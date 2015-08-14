@@ -1,0 +1,58 @@
+PackratFormat: 1.4
+PackratVersion: 0.4.4
+RVersion: 3.2.0
+Repos: CRAN=http://cran.wustl.edu
+
+Package: Rcpp
+Source: CRAN
+Version: 0.12.0
+Hash: 9cad2f0525579d98b5ec2536febaf0da
+
+Package: RcppArmadillo
+Source: CRAN
+Version: 0.5.300.4
+Hash: ebaae1356a2ba3861183af302483da89
+Requires: Rcpp
+
+Package: colorspace
+Source: CRAN
+Version: 1.2-6
+Hash: 00bb12245cd975c450cc4a960884fa15
+
+Package: forecast
+Source: CRAN
+Version: 6.1
+Hash: 17d8f78dfeef110f900681c3009830f5
+Requires: Rcpp, RcppArmadillo, colorspace, fracdiff, timeDate, tseries,
+    zoo
+
+Package: fracdiff
+Source: CRAN
+Version: 1.4-2
+Hash: 75e1920799a698acf5912369675100af
+
+Package: packrat
+Source: CRAN
+Version: 0.4.4
+Hash: aed7d17407538df551a57caf6289c8bf
+
+Package: quadprog
+Source: CRAN
+Version: 1.5-5
+Hash: 69000b7dc41b09977dcf781f909d235c
+
+Package: timeDate
+Source: CRAN
+Version: 3012.100
+Hash: 78876c125c98033cd093fa0283469637
+
+Package: tseries
+Source: CRAN
+Version: 0.10-34
+Hash: 9907998383c7d39f42da6c3c84511e57
+Requires: quadprog, zoo
+
+Package: zoo
+Source: CRAN
+Version: 1.7-12
+Hash: 8ce4a89536cba4fa6023190959de5658
