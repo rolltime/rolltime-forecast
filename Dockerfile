@@ -3,7 +3,7 @@
 # It needs a performant R instance. Receive links from DB. #
 ############################################################
 
-FROM rocker/r-devel:latest
+FROM rocker/r-base:latest
 
 RUN /
   git clone https://github.com/rolltime/rolltime-forecast /
