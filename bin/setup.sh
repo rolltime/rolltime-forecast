@@ -1,5 +1,6 @@
 #!/bin/bash
 
 #
-# Setting up the forecast API.
+# Installing dependencies.
 #
+Rscript config/setup.R
