@@ -17,6 +17,7 @@ RUN \
   && sudo add-apt-repository "deb http://cran.cnr.Berkeley.edu/bin/linux/ubuntu trusty/" \
   && sudo apt-get update \
   && sudo apt-get install -y r-base r-base-dev \
+  && sudo apt-get install -y libcurl4-openssl-dev libxml2-dev \
   && sudo apt-get install -y git
 
 #
