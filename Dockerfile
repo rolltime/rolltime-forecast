@@ -11,21 +11,22 @@ USER root
 # Setting up basic Ubuntu
 # machine with R.
 #
-RUN /
-  && apt-key adv –keyserver keyserver.ubuntu.com –recv-keys E084DAB9 /
-  && add-apt-repository ‘deb https://cran.cnr.Berkeley.edu/bin/linux/ubuntu trusty/’
-  && apt-get update /
-  && apt-get upgrade /
-  && apt-get install r-base r-base-dev /
-  && apt-get install git
+RUN \
+  apt-get install -y software-properties-common \
+  && sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E084DAB9 \
+  && sudo add-apt-repository "deb http://cran.cnr.Berkeley.edu/bin/linux/ubuntu trusty/" \
+  && sudo apt-get update \
+  && sudo apt-get install -y r-base r-base-dev \
+  && sudo apt-get install -y git
 
 #
 # Cloning repository and
 # setting-up the application.
 #
-RUN /
-  && git clone http://github.com/rolltime/rolltime-forecast /
-  && cd rolltime-forecast /
+RUN \
+  git clone http://github.com/rolltime/rolltime-forecast \
+  && cd rolltime-forecast \
+  && echo "install.packages('packrat', repos='http://cran.rstudio.com/')" | R --no-save \
   && make setup
 
 WORKDIR "/rolltime-forecast"
@@ -33,4 +34,3 @@ WORKDIR "/rolltime-forecast"
 EXPOSE 6000
 
 CMD ["make", "run"]
-
