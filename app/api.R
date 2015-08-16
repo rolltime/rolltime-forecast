@@ -5,30 +5,19 @@
 # Author: Luis Capelo | luiscape@gmail.com
 #
 
-# library(dplyr)
 library(plumber)
-
-# source('app/helpers/read_table.R')
 
 RunAPI <- function(prepare_data=FALSE, api_port=6000, flag='development') {
 
+  cat('--------------------------------\n')
   m = paste('Model API running on:', flag, '\n')
   cat(m)
-
-  #
-  # Preparing data.
-  #
-  if (prepare_data) ProcessData()
-
-  #
-  # Load data.
-  #
-  # data <- ReadTable('station_processed', deploy=FALSE)
+  cat('--------------------------------\n')
 
   #
   # Setting up API parameters.
   #
-  r <- plumb(paste0(getwd(), '/app/models/test.R'))
+  r <- plumb(paste0(getwd(), '/app/models/auto_arima.R'))
   r$run(port=api_port)
 }
 
