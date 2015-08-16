@@ -4,9 +4,9 @@ data/**
 results/*
 results/**
 packrat/lib*/
+
 .DS_Store
 .Rhistory
 .Rdata
-
 *.sqlite
 *.pyc
