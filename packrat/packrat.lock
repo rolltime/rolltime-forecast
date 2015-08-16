@@ -1,7 +1,7 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.4
 RVersion: 3.2.0
-Repos: CRAN=http://cran.wustl.edu
+Repos: CRAN=http://cran.rstudio.com/
 
 Package: BH
 Source: CRAN
@@ -126,7 +126,7 @@ Package: ggplot2
 Source: CRAN
 Version: 1.0.1
 Hash: 4aff1b269135bd2cdea378f4f2f2895e
-Requires: digest, gtable, proto, plyr, scales, reshape2
+Requires: digest, gtable, plyr, proto, reshape2, scales
 
 Package: git2r
 Source: CRAN
@@ -175,7 +175,7 @@ Package: lubridate
 Source: CRAN
 Version: 1.3.3
 Hash: bc99e5efa2e943ffa30ac4f4dd6630d1
-Requires: plyr, memoise, stringr
+Requires: memoise, plyr, stringr
 
 Package: magrittr
 Source: CRAN
@@ -257,13 +257,13 @@ Package: scales
 Source: CRAN
 Version: 0.2.5
 Hash: b0dc8e47269dd486bf853b2f3960b732
-Requires: RColorBrewer, Rcpp, dichromat, labeling, plyr, munsell
+Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
 
 Package: sqldf
 Source: CRAN
 Version: 0.4-10
 Hash: 46cd78edf0fc3c746c7d26f44fcb4e50
-Requires: DBI, chron, proto, RSQLite, gsubfn
+Requires: DBI, RSQLite, chron, gsubfn, proto
 
 Package: stringi
 Source: CRAN
