@@ -1,5 +1,5 @@
 #
-# Random walk forecasting model.
+# Exponential smoothing model.
 #
 # Author: Luis Capelo  luiscape@gmail.com
 #
@@ -14,7 +14,7 @@ library(forecast)
 #
 source('scripts/R/helpers/read_station_data.R')
 
-FitRandomWalkModel <- function(
+FitExponentialModel <- function(
   data=NULL,
   production_model=FALSE,
   station_id=NULL,
@@ -24,7 +24,7 @@ FitRandomWalkModel <- function(
   #
   # Load data.
   #
-  cat('Calculating Random Walk Model ...')
+  cat('Calculating Exponential Smoothing Model ...')
   if (is.null(data) == TRUE) {
     data <- ReadStationData(station_id=station_id)
   }
@@ -46,7 +46,7 @@ FitRandomWalkModel <- function(
     #
     # Calculate model.
     #
-    results <- rwf(time_series_data, h=forecast_minutes, drift=FALSE)
+    results <- ets(time_series_data, h=forecast_minutes)
     cat(' done.\n')
     return(results)
   }
@@ -59,7 +59,7 @@ FitRandomWalkModel <- function(
     inTrain <- createDataPartition(time_series_data, p=train_set_size, list=FALSE)
     train <- time_series_data[inTrain]
     test <- time_series_data[-inTrain]
-    model_fit <- rwf(train, h=forecast_minutes, drift=FALSE)
+    model_fit <- ets(train)
 
     #
     # Measuring model.
@@ -67,7 +67,7 @@ FitRandomWalkModel <- function(
     forecast_results <- forecast(model_fit, h=forecast_minutes)
     model_accuracy <- data.frame(accuracy(forecast_results, test))
     model_accuracy$sets <- c('train', 'test')
-    model_accuracy$name <- 'RANDOMW'
+    model_accuracy$name <- 'EXPONENTIAL'
     model_accuracy$station_id <- station_id
 
     cat(' done.\n')
