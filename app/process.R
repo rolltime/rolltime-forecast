@@ -54,15 +54,15 @@ CleanData <- function(df=NULL, transform_minutes=TRUE, verbose=FALSE) {
   s$availableBikesRatio <- s$availableBikes / s$totalDocks
   # s$availabilityRatio <- s$availableDocksRatio + s$availableBikesRatio
   # s$usageRatio <- 1 - (s$availableDocksRatio + s$availableBikesRatio)
-  
+
   #
   # Clean duplicates.
   #
   s <- s[!duplicated(s), ]
-  
+
   #
   # Fetch the latest data per minute.
-  # Pessimistic approach: selects the 
+  # Pessimistic approach: selects the
   # lowest number of available bikes
   # ratio per same minute observation.
   #
@@ -70,11 +70,11 @@ CleanData <- function(df=NULL, transform_minutes=TRUE, verbose=FALSE) {
   if (transform_minutes) {
     s <- s %>%
       group_by(id, executionTime) %>%
-      filter(availableBikes == min(availableBikes)) 
+      filter(availableBikes == min(availableBikes))
   }
-  
+
   a = nrow(s)
-  
+
   if (verbose) cat(paste0('Rows cleaned: ', round((1-(a/b))*100, 4), '%'))
 
   return(s)
@@ -88,7 +88,7 @@ ProcessData <- function() {
   cat('----------------------------\n')
   cat('Preparing data for model.\n')
   cat('----------------------------\n')
-  
+
   #
   # Load.
   #
@@ -98,7 +98,7 @@ ProcessData <- function() {
 
   #
   # Process.
-  # dplyr has a bug with classes. 
+  # dplyr has a bug with classes.
   # Transforming the output of a dplyr function
   # to data.frame is necessary before storing it
   # in a data base.
@@ -114,7 +114,7 @@ ProcessData <- function() {
   # Store.
   #
   cat('Storing processed data in database | ')
-  WriteTable(processed_data, 'metric', overwrite=TRUE)
+  WriteTable(processed_data, 'station_processed', overwrite=TRUE)
   cat('DONE.\n')
 
   cat('----------------------------\n')
