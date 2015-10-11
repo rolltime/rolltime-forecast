@@ -15,9 +15,10 @@ source(paste0(getwd(), '/app/helpers/read_station_day.R'))
 
 #' @get /forecast
 FitArimaModel <- function(
+  day=NULL,
   data=NULL,
-  station=72,
-  object=NULL,
+  station=NULL,
+  object='availableBikesRatio',
   forecast_minutes=120,
   train_set_size=.80,
   production_model=TRUE
@@ -38,13 +39,16 @@ FitArimaModel <- function(
   # Object: availableBikesRatio
   #
   if (is.null(data)) {
-    data <- ReadStationDay(day='2015-07-06', column=object, station_id=station)
+    if (is.null(day)) {
+      d = Sys.Date()
+    }
+    data <- ReadStationDay(day=d, column=object, station_id=station)
   }
 
   #
   # Organizing the model data.frame
   #
-  model_data = data$availableBikesRatio
+  model_data = data$availablebikesratio
   time_series_data <- msts(model_data, start=1, ts.frequency=1440, seasonal.periods=c(1440,7))
 
 
@@ -55,7 +59,7 @@ FitArimaModel <- function(
     # time labels based on
     # input data.
     #
-    last_minute <- max(as.POSIXct(data$executionTime))
+    last_minute <- max(as.POSIXct(data$executiontime))
     FillTimes <- function(data=NULL) {
       minutes = c()
       for (i in 1:forecast_minutes) {

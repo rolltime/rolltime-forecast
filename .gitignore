@@ -4,8 +4,10 @@ data/**
 results/*
 results/**
 packrat/lib*/
+packrat/src*/
 .DS_Store
 .Rhistory
 .Rdata
 *.sqlite
 *.pyc
+.Rproj.user
