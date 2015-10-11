@@ -11,7 +11,20 @@ library(forecast)
 #
 # Loading helper functions.
 #
+source(paste0(getwd(), '/app/status.R'))
 source(paste0(getwd(), '/app/helpers/read_station_day.R'))
+
+#' @get /status
+Status <- function() {
+  status = list(
+    success = TRUE,
+    version = 'v.0.1.0',
+    repository = 'https://github.com/rolltime/rolltime-forecast',
+    maintainer = 'Luis Capelo <luiscape@gmail.com>',
+    description = 'API for forecasting the next N minutes of availability of bikes or docks from any CitiBike station.'
+    )
+  return(status)
+}
 
 #' @get /forecast
 FitArimaModel <- function(
