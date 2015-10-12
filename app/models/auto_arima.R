@@ -11,7 +11,6 @@ library(forecast)
 #
 # Loading helper functions.
 #
-source(paste0(getwd(), '/app/status.R'))
 source(paste0(getwd(), '/app/helpers/read_station_day.R'))
 
 #' @get /status
